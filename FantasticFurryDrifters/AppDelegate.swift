@@ -19,10 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let rootViewController = GameCharacterController(nibName: nil, bundle: nil)
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        window?.rootViewController = navigationController
+       // let rootViewController = GameViewController(nibName: nil, bundle: nil)
+        //let navigationController = UINavigationController(rootViewController: rootViewController)
+       // window?.rootViewController = rootViewController
+       // window?.makeKeyAndVisible()
+        
+        let rvc = GameCharacterController(nibName: nil, bundle: nil)
+        window?.rootViewController = rvc
         window?.makeKeyAndVisible()
+        
+        
         return true
     }
 

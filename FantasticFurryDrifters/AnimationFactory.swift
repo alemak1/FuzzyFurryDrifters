@@ -15,9 +15,13 @@ class AnimationFactory{
     //Singleton instance
     static let sharedInstance = AnimationFactory()
     
-    
     //TextureAtlasManager singleton
     let textureAtlasManager = TextureAtlasManager.sharedInstance
+    
+    //Nested Enum Type for Animations with Different Colored Textures
+    enum Color{
+        case Blue, Green, Red, Yellow
+    }
     
     //BasicAnimations
     var spikemanAnimation: SKAction = SKAction()
@@ -29,6 +33,7 @@ class AnimationFactory{
     var bronzeCoinAnimation: SKAction = SKAction()
     var regularCarrotAnimation: SKAction = SKAction()
     var goldCarrotAnimation: SKAction = SKAction()
+    var planeAnimations = [Color: SKAction]()
     
     private init(){
         
@@ -41,13 +46,20 @@ class AnimationFactory{
         configureBronzeCoinAnimation()
         configureRegularCarrotAnimation()
         configureGoldCarrotAnimation()
-    
+        configurePlaneAnimation()
     }
     
     
     //Getter functions for all the basic animations
     func getSpikemanDefaultAnimation() -> SKAction{
         return spikemanAnimation
+    }
+    
+    func getPlaneAnimation(color: AnimationFactory.Color) -> SKAction{
+        
+        guard let planeAnimation = planeAnimations[color] else { return SKAction() }
+        
+        return planeAnimation
     }
     
     func getSpikeballDefaultAnimation() -> SKAction{
@@ -82,6 +94,38 @@ class AnimationFactory{
         return goldCarrotAnimation
     }
     
+    private func configurePlaneAnimation(){
+        
+        planeAnimations = [
+            
+            Color.Blue : getPlaneAnimation(textureName1: "planeBlue1", textureName2: "planeBlue2", textureName3: "planeBlue3"),
+            Color.Green : getPlaneAnimation(textureName1: "planeGreen1", textureName2: "planeGreen2", textureName3: "planeGreen3"),
+            Color.Red : getPlaneAnimation(textureName1: "planeRed1", textureName2: "planeRed2", textureName3: "planeRed3"),
+            Color.Yellow: getPlaneAnimation(textureName1: "planeYellow1", textureName2: "planeYellow2", textureName3: "planeYellow3")
+
+        ]
+    }
+    
+    //Helper Function for configuring plane animations of different colors
+    
+    private func getPlaneAnimation(textureName1: String, textureName2: String, textureName3: String) -> SKAction{
+        
+        guard let texture1 = textureAtlasManager.getTextureAtlas(atlasType: .Planes)?.textureNamed(textureName1), let texture2 = textureAtlasManager.getTextureAtlas(atlasType: .Planes)?.textureNamed(textureName2), let texture3 = textureAtlasManager.getTextureAtlas(atlasType: .Planes)?.textureNamed(textureName3) else { return SKAction() }
+        
+        let flightAction = SKAction.animate(with: [
+            texture1,
+            texture2,
+            texture3
+            ], timePerFrame: 0.25)
+        
+        return flightAction
+        
+    }
+    
+   
+  
+    
+
     private func configureSpikemanAnimation(){
         
         guard let texture1 = textureAtlasManager.getTextureAtlas(atlasType: .SpikeMan)?.textureNamed("spikeMan_walk1"), let texture2 = textureAtlasManager.getTextureAtlas(atlasType: .SpikeMan)?.textureNamed("spikeMan_walk2") else { return }

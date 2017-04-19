@@ -28,6 +28,7 @@ class TextureAtlasManager{
         case Items
         case Keys
         case OtherEnemies
+        case Planes
         case RoundUnoutlinedAnimals
         case SilverCoin
         case SpikeBall
@@ -70,6 +71,7 @@ class TextureAtlasManager{
     var starsAtlas: SKTextureAtlas?
     var tilesAtlas: SKTextureAtlas?
     var springAtlas: SKTextureAtlas?
+    var planesAtlas: SKTextureAtlas?
     
     private init(){
         configureTextureAtlases()
@@ -127,6 +129,8 @@ class TextureAtlasManager{
             return tilesAtlas
         case .UIElements:
             return userInterfaceElementsAtlas
+        case .Planes:
+            return planesAtlas
         }
     }
     
@@ -156,6 +160,7 @@ class TextureAtlasManager{
         starsAtlas = SKTextureAtlas(named: "Stars.atlas")
         tilesAtlas = SKTextureAtlas(named: "Tiles.atlas")
         userInterfaceElementsAtlas = SKTextureAtlas(named: "UIElements.atlas")
+        planesAtlas = SKTextureAtlas(named: "Planes.atlas")
     }
     
 }

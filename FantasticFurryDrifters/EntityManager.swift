@@ -21,6 +21,7 @@ class EntityManager{
         return [motionResponderSystem]
     }()
     
+   
     init(scene: EnemyAgentScene){
         self.scene = scene
     }

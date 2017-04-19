@@ -93,7 +93,7 @@ class GKPlayer: GKEntity{
     }
     
     private func addMotionResponderComponent(motionManager: CMMotionManager){
-        let motionResponderComponent = GKMotionResponderComponent(motionManager: motionManager)
+        let motionResponderComponent = GKMotionResponderComponentXY(motionManager: motionManager)
         addComponent(motionResponderComponent)
         
     }

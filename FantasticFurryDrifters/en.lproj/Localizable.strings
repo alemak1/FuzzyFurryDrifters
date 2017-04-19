@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  FantasticFurryDrifters
+
+  Created by Aleksander Makedonski on 4/9/17.
+  Copyright © 2017 AlexMakedonski. All rights reserved.
+*/
+
+
+"Spikeman" = "Spikeman";
+
+"Spikeman runs along the edges of the screen, waiting for Riddle Rabbit to get stuck on his deadly spike.  Once impaled on Spikeman's spiky head, the player is damaged and cannot move any further. Try as much as possible to avoid this nasty critter!" = "Spikeman runs along the edges of the screen, waiting for Riddle Rabbit to get stuck on his deadly spike.  Once impaled on Spikeman's spiky head, the player is damaged and cannot move any further. Try as much as possible to avoid this nasty critter!";
+
+"Spikeball" = "Spikeball";
+
+"Savage Sun" = "Savage Sun";
+
+"Edge Spikes" = "Edge Spikes";
+
+"Gold Coin" = "Gold Coin";
+
+"Silver Coin" = "Silver Coin";
+
+"Bronze Coin" = "Bronze Coin";
+
+"Enemy Cloud" = "Enemy Cloud";
+
+"Bubble Cover" = "Bubble Cover";
+
+"Yellow Portal" = "Yellow Portal";
+
+"Orange Portal" = "Orange Portal";
+
+"Gold Carrot" = "Gold Carrot";
+
+"Regular Carrot" = "Regular Carrot";
+
+

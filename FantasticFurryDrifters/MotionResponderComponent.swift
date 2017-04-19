@@ -29,6 +29,10 @@ class GKMotionResponderComponent: GKComponent{
         }
     }
     
+    var appliedForceDeltaX = 0.00
+    var appliedForceDeltaY = 0.00
+    
+    
     init(motionManager: CMMotionManager){
         super.init()
 
@@ -39,33 +43,43 @@ class GKMotionResponderComponent: GKComponent{
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
         
-            
+
+        
+    }
+    
+    
+    func setAppliedForceDeltaX(){
+        
         if let motionData = motionManager.deviceMotion{
-        
-            let verticalAttitude = -motionData.attitude.pitch
             let horizontalAttitude = motionData.attitude.roll
-        
-            let verticalRotationRate = -motionData.rotationRate.x
             let horizontalRotationRate = motionData.rotationRate.y
-        
-          
-            var dxImpulse = 0.00
-            var dyImpulse = 0.00
-        
-        
+            
             if((horizontalAttitude > 0.00 && horizontalRotationRate > 0.00) || (horizontalAttitude < 0.00 && horizontalRotationRate < 0.00)){
-                dxImpulse = horizontalRotationRate*150
+                appliedForceDeltaX = horizontalRotationRate*150.00
             }
-        
-            if((verticalAttitude < 0.00 && verticalRotationRate < 0.00) || (verticalAttitude > 0.00 && verticalRotationRate > 0.00)){
-                dyImpulse = verticalRotationRate*150
-            }
-        
-        
-            let appliedImpulseVector = CGVector(dx: dxImpulse, dy: dyImpulse)
-            physicsBody.applyForce(appliedImpulseVector)
-        
+            
+
         }
+    }
+    
+    
+    func setAppliedForceDeltaY(){
+        
+        if let motionData = motionManager.deviceMotion{
+            let verticalAttitude = -motionData.attitude.pitch
+            let verticalRotationRate = -motionData.rotationRate.x
+            
+            if((verticalAttitude < 0.00 && verticalRotationRate < 0.00) || (verticalAttitude > 0.00 && verticalRotationRate > 0.00)){
+                appliedForceDeltaY = verticalRotationRate*150
+            }
+            
+            
+        }
+    }
+    
+    func applyPhysicsBodyForceFromRotationInput(){
+        let appliedImpulseVector = CGVector(dx: appliedForceDeltaX, dy: appliedForceDeltaY)
+        physicsBody.applyForce(appliedImpulseVector)
         
     }
     
@@ -74,5 +88,36 @@ class GKMotionResponderComponent: GKComponent{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented yet")
+    }
+}
+
+
+class GKMotionResponderComponentX: GKMotionResponderComponent{
+    
+    
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        setAppliedForceDeltaX()
+        applyPhysicsBodyForceFromRotationInput()
+    }
+}
+
+
+class GKMotionResponderComponentY: GKMotionResponderComponent{
+    
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        setAppliedForceDeltaY()
+        applyPhysicsBodyForceFromRotationInput()
+    }
+}
+
+
+class GKMotionResponderComponentXY: GKMotionResponderComponent{
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+        setAppliedForceDeltaX()
+        setAppliedForceDeltaY()
+        applyPhysicsBodyForceFromRotationInput()
     }
 }

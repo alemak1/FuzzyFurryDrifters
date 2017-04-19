@@ -11,12 +11,14 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-class EnemyAgentScene: SKScene{
+class EnemyAgentScene: SKScene, SKPhysicsContactDelegate{
     
     var lastUpdateTime: TimeInterval = 0.00
     
     var entitiesManager: EntityManager!
     var motionManager: CMMotionManager = CMMotionManager()
+    
+    var interactionBodyComponentSystem = GKComponentSystem(componentClass: GKInteractionComponent.self)
     
     
     //Add game characters (players, enemies, items, etc.) to the world
@@ -81,7 +83,11 @@ class EnemyAgentScene: SKScene{
         let spikemanBottom1 = GKSpikemanBottom(scalingFactor: 0.40, position: nil, movementLowerBound: nil, movementUpperBound: nil)
         entitiesManager.add(spikemanBottom1)
         
+        let startingPosition = CGPoint(x: -ScreenSizeConstants.HalfScreenWidth, y: 0.00)
+        let planeVector = CGVector(dx: 20.0, dy: 0.00)
         
+        let tiltPlane = GKTiltPlane(planeColor: .Blue, vector: planeVector, position: startingPosition, size: nil, scalingFactor: 1.0, motionManager: motionManager)
+        entitiesManager.add(tiltPlane)
         
         //let randomTopPosition = RandomGenerator.getRandomEdgePointFor(screenEdge: .Top)
         //let spikemanTop1 = GKSpikemanTop(scalingFactor: 0.40, position: randomTopPosition, movementLowerBound: nil, movementUpperBound: nil)
@@ -151,6 +157,12 @@ class EnemyAgentScene: SKScene{
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+    }
+    
+    //MARKL ************ Each
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        //implement contact oligc here
     }
     
 }

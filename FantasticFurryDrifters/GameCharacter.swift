@@ -25,39 +25,42 @@ enum GameCharacter{
     case YellowPortal
     case RegularCarrot
     case GoldCarrot
+    case TiltPlane
     
     
     var title: String?{
         get{
             switch(self){
             case .GoldCoin:
-                return "Gold Coin"
+                return GameTextManager.CharacterInformation.GoldCoin.title
             case .SilverCoin:
-                return "Silver Coin"
+                return GameTextManager.CharacterInformation.SilverCoin.title
             case .BronzeCoin:
-                return "Bronze Coin"
+                return GameTextManager.CharacterInformation.BronzeCoin.title
             case .EnemyCloud:
-                return "Killer Cloud"
+                return GameTextManager.CharacterInformation.EnemyCloud.title
             case .EnemySun:
-                return "Savage Sun"
+                return GameTextManager.CharacterInformation.SavageSun.title
             case .Spikeman:
-                return "Spikeman"
+                return GameTextManager.CharacterInformation.Spikeman.title
             case .Spikeball:
-                return "Spikeball"
+                return GameTextManager.CharacterInformation.Spikeball.title
             case .EdgeSpikes:
-                return "Edge Spikes"
+                return GameTextManager.CharacterInformation.EdgeSpikes.title
             case .JetPack:
-                return "JetPack"
+                return GameTextManager.CharacterInformation.JetPack.title
             case .BubbleCover:
-                return "Bubble Cover"
+                return GameTextManager.CharacterInformation.BubbleCover.title
             case .OrangePortal:
-                return "Orange Portal"
+                return GameTextManager.CharacterInformation.OrangePortal.title
             case .YellowPortal:
-                return "Yellow Portal"
+                return GameTextManager.CharacterInformation.YellowPortal.title
             case .RegularCarrot:
-                return "Regular Carrot"
+                return GameTextManager.CharacterInformation.RegularCarrot.title
             case .GoldCarrot:
-                return "Gold Carrot"
+                return GameTextManager.CharacterInformation.GoldCarrot.title
+            case .TiltPlane:
+                return GameTextManager.CharacterInformation.TiltPlane.title
             }
         }
     }
@@ -65,34 +68,36 @@ enum GameCharacter{
     var description: String?{
         get{
             switch(self){
+                case .TiltPlane:
+                    return GameTextManager.CharacterInformation.TiltPlane.description
                 case .Spikeman:
-                    return "Spikeman runs along the edges of the screen, waiting for Riddle Rabbit to get stuck on his deadly spike.  Once impaled on Spikeman's spiky head, the player is damaged and cannot move any further. Try as much as possible to avoid this nasty critter!"
+                    return GameTextManager.CharacterInformation.Spikeman.description
                 case .Spikeball:
-                    return "Spikeball is constantly spinning in the air, sometimes moving back and forth, sometimes moving in random directions, and sometimes even trying to chase Riddle Rabbit"
+                    return GameTextManager.CharacterInformation.Spikeball.description
                 case .EdgeSpikes:
-                    return "Edge spikes remain static along the edges, unlike Spikeman. They cause player damage if hit by the player but will not impale the player."
+                    return GameTextManager.CharacterInformation.EdgeSpikes.description
                 case .GoldCoin:
-                    return "A gold coin is worth 5 points."
+                    return GameTextManager.CharacterInformation.GoldCoin.description
                 case .SilverCoin:
-                    return "A silver coin is worth 3 points"
+                    return GameTextManager.CharacterInformation.SilverCoin.description
                 case .BronzeCoin:
-                    return "A bronze coin is worth 1 point"
+                    return GameTextManager.CharacterInformation.BronzeCoin.description
                 case .EnemySun:
-                    return "Savage Sun just can't wait to scorch and burn Riddle Rabbit and keep him from collecting coins and carrots."
+                    return GameTextManager.CharacterInformation.SavageSun.description
                 case .EnemyCloud:
-                    return "Killer clouds are not like regular backgrounds clouds and can cause damage to Riddle Rabbit.  Try to avoid these nasty clouds at all costs."
+                    return GameTextManager.CharacterInformation.EnemyCloud.description
                 case .JetPack:
-                    return "JetPacks allow the player to use touch control on Riddle Rabbit.  When a jetpack is obtained, instead of having to tilt the screen back and forth, just touch down on the riddle rabbit and move him freely around the screen."
+                    return GameTextManager.CharacterInformation.JetPack.description
                 case .BubbleCover:
-                    return "Getting a bubble provides Riddle Rabbit with temporary protection against surrounding enemies.  But beware: every bubble will eventually burst!"
+                    return GameTextManager.CharacterInformation.BubbleCover.description
                 case .YellowPortal:
-                    return "Yellow portal transport Riddle Rabbit closer to coins"
+                    return GameTextManager.CharacterInformation.YellowPortal.description
                 case .OrangePortal:
-                    return "Orange portals transport Riddle Rabbit closer to carrots"
+                    return GameTextManager.CharacterInformation.OrangePortal.description
                 case .GoldCarrot:
-                    return "A regular carrot provides an extra life."
+                    return GameTextManager.CharacterInformation.GoldCarrot.description
                 case .RegularCarrot:
-                    return "A gold carrot provides full life restoration. These are often heavily guarded by enemies"
+                    return GameTextManager.CharacterInformation.RegularCarrot.description
                 
             }
         }
@@ -129,6 +134,8 @@ enum GameCharacter{
                 return #imageLiteral(resourceName: "carrot")
             case .GoldCarrot:
                 return #imageLiteral(resourceName: "carrot_gold")
+            case .TiltPlane:
+                return #imageLiteral(resourceName: "planeRed1")
             }
             
         }
@@ -143,6 +150,9 @@ extension GameCharacter{
     var basicTexture: SKTexture?{
         get{
             switch(self){
+            case .TiltPlane:
+                return
+                    TextureAtlasManager.sharedInstance.getTextureAtlas(atlasType: .Planes)?.textureNamed("planeRed1")
             case .Spikeman:
                 return TextureAtlasManager.sharedInstance.getTextureAtlas(atlasType: .SpikeMan)?.textureNamed("spikeMan_jump")
             case .Spikeball:
@@ -183,6 +193,8 @@ extension GameCharacter{
     var basicAnimation: SKAction?{
         get{
             switch(self){
+            case .TiltPlane:
+                return AnimationFactory.sharedInstance.getPlaneAnimation(color: .Red)
             case .Spikeman:
                 return AnimationFactory.sharedInstance.getSpikemanDefaultAnimation()
             case .Spikeball:
@@ -238,7 +250,11 @@ extension GameCharacter{
         //MARK: ************ Coin Item Profiles
         [GameCharacter.GoldCoin,
          GameCharacter.SilverCoin,
-         GameCharacter.BronzeCoin ]
+         GameCharacter.BronzeCoin ],
+        
+        //MARK: ********** Other Game Characters
+        [GameCharacter.TiltPlane
+        ]
         
     ]
 }

@@ -1,0 +1,64 @@
+/* 
+  Localizable.strings
+  FantasticFurryDrifters
+
+  Created by Aleksander Makedonski on 4/9/17.
+  Copyright © 2017 AlexMakedonski. All rights reserved.
+*/
+
+
+"Spikeman" = "小尖人";
+
+"Spikeman runs along the edges of the screen, waiting for Riddle Rabbit to get stuck on his deadly spike.  Once impaled on Spikeman's spiky head, the player is damaged and cannot move any further. Try as much as possible to avoid this nasty critter!" = "小尖人在屏幕的边境一直在跑来跑去，等待着任何机会能够把小兔子捅掉。小兔子一被捅到，就要受伤，并且会被短暂地困在小尖人的钉子上。尽量不要碰到他";
+
+"Spikeball" = "小刺球";
+
+"Savage Sun" = "野太阳";
+
+"Edge Spikes" = "边境刺";
+
+"Gold Coin" = "金币";
+
+"Silver Coin" = "银币";
+
+"Bronze Coin" = "铜币";
+
+"Enemy Cloud" = "恶云";
+
+"Bubble Cover" = "泡沫";
+
+"Yellow Portal" = "金门";
+
+"Orange Portal" = "橙门";
+
+"Gold Carrot" = "金胡萝卜";
+
+"Regular Carrot" = "胡萝卜";
+
+
+
+
+/**
+"Edge Spikes" = "边境刺";
+
+"Gold Coin" = "金币";
+
+"Silver Coin" = "银币";
+
+"Bronze Coin" = "铜币";
+
+"Enemy Cloud" = "恶云";
+
+"Bubble Cover" = "泡沫";
+
+"Yellow Portal" = "金门";
+
+"Orange Portal" = "橙门";
+
+"Gold Carrot" = "金胡萝卜";
+
+"Regular Carrot" = "一般胡萝卜";
+**/
+
+
+

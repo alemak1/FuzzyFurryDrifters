@@ -30,3 +30,4 @@ class FontNames{
     static let NoteworthyBold = "Noteworthy-Bold"
     static let NoteworthLight = "Noteworthy-Light"
 }
+
